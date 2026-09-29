@@ -14,7 +14,7 @@ services:
       GATEWAY_TOKEN: ${GATEWAY_TOKEN}
       UPLOADX_TOKEN: ${UPLOADX_TOKEN}
       UPLOADX_URL: ${UPLOADX_URL}
-      PUBLIC_URL: https://api.wapi.crafter.run
+      PUBLIC_URL: ${API_PUBLIC_URL:-https://api.wapi.crafter.run}
       # Audit request/response bodies. They carry message text and recipient numbers, redacted
       # of credentials but not of content, so set this to "off" for a metadata-only trail.
       AUDIT_BODIES: ${AUDIT_BODIES:-on}
@@ -90,10 +90,10 @@ services:
       # outbound DNS from inside the container. The doctor deliberately uses the public URL,
       # because the edge is part of what it is checking.
       API_INTERNAL_URL: http://api:3001
-      API_PUBLIC_URL: https://api.wapi.crafter.run
+      API_PUBLIC_URL: ${API_PUBLIC_URL:-https://api.wapi.crafter.run}
       # Where the CLI is told to send people to approve a login. Derived from the request it would
       # be the container's bind address, which is not a URL anybody can open.
-      WEB_PUBLIC_URL: https://wapi.crafter.run
+      WEB_PUBLIC_URL: ${WEB_PUBLIC_URL:-https://wapi.crafter.run}
     expose:
       - "3000"
     depends_on:
